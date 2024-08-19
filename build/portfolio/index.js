@@ -1,11 +1,11 @@
 (function() {
   "use strict";
-  const m = ({ name: e, dev: t }) => {
+  const j = ({ name: o, dev: t }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${t})`,
+      `%c EXP: ${o} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, l = (e) => document.querySelectorAll(e), a = (e) => document.querySelector(e), b = "../src/portfolio/assets/", p = {
+  }, m = (o) => document.querySelectorAll(o), h = (o) => document.querySelector(o), y = "../src/portfolio/assets/", f = {
     arrowLeft: (
       /*html */
       `
@@ -19,7 +19,7 @@
     <svg aria-hidden="true" height="24" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="octicon octicon-mark-github">
       <path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
     </svg>`
-  }, s = {
+  }, b = {
     cerebelly: {
       variants: [
         {
@@ -264,29 +264,29 @@
         }
       ]
     }
-  }, v = () => {
-    const e = /* @__PURE__ */ new Set();
-    for (const n in s)
-      s[n].variants.forEach((r) => {
-        var c;
-        const o = (c = r.collections) == null ? void 0 : c.split(",").map((d) => d.trim());
-        o == null || o.forEach((d) => e.add(d));
+  }, C = () => {
+    const o = /* @__PURE__ */ new Set();
+    for (const n in b)
+      b[n].variants.forEach((a) => {
+        var p;
+        const s = (p = a.collections) == null ? void 0 : p.split(",").map((l) => l.trim());
+        s == null || s.forEach((l) => o.add(l));
       });
     let t = '<li><a href="#" data-filter="all" class="active">All</a></li>';
-    return e.forEach((n) => {
+    return o.forEach((n) => {
       t += `<li><a href="#" data-filter="${n}">${n}</a></li>`;
     }), `<ul class="d-flex">${t}</ul>`;
-  }, f = () => {
-    let e = "";
-    for (const t in s) {
-      const n = s[t].variants;
+  }, A = () => {
+    let o = "";
+    for (const t in b) {
+      const n = b[t].variants;
       for (let i = 0; i < n.length; i++) {
-        const r = n[i].images[0], o = n[i].collections;
-        e += `
-                <div class="portfolio_item item-masonry ${n[i].classes ? n[i].classes : "width-25"}" data-collections="${o}">
+        const a = n[i].images[0], s = n[i].collections;
+        o += `
+                <div class="portfolio_item item-masonry ${n[i].classes ? n[i].classes : "width-25"}" data-collections="${s}">
                     <a href="?product=${t}&variant=${i}">
                         <span>
-                            <img src="${b + "images/" + t + r}" alt="${t} image">
+                            <img src="${y + "images/" + t + a}" alt="${t} image">
                         </span>
                     </a>
                 </div>`;
@@ -296,23 +296,23 @@
         <div class="portfolio">
             <div class="container">
                 <nav class="nav ">
-                    ${v()}
+                    ${C()}
                 </nav>
-                <div class="portfolio_list masonry">${e}</div>
+                <div class="portfolio_list masonry">${o}</div>
             <div>
         </div>`;
-  }, w = (e, t) => {
-    const n = s[e].variants[t], i = n.images;
-    let r = "";
-    for (let o = 0; o < i.length; o++)
-      r += `<div class="swiper-slide"><img src="${b + "images/" + e + i[o]}" alt="image"></div>`;
+  }, I = (o, t) => {
+    const n = b[o].variants[t], i = n.images;
+    let a = "";
+    for (let s = 0; s < i.length; s++)
+      a += `<div class="swiper-slide"><img src="${y + "images/" + o + i[s]}" alt="image"></div>`;
     return `
         <div class="product">
             <div class="d-flex">
                 <div class="product_left">
-                    <a href="#" class="btn-back items-center">${p.arrowLeft} Back</a>
+                    <a href="#" class="btn-back items-center">${f.arrowLeft} Back</a>
                     <div class="product_gallery">
-                        ${r}
+                        ${a}
                     </div>
                 </div>
                 <div class="product_right">
@@ -323,20 +323,190 @@
                        
                         <p>${n.description}</p>
                      
-                        ${n.gitHubCode ? `<br><br><a href="${n.gitHubCode}" class="items-center" target="_blank">${p.github} <b>Github</b></a>` : ""}
+                        ${n.gitHubCode ? `<br><br><a href="${n.gitHubCode}" class="items-center" target="_blank">${f.github} <b>Github</b></a>` : ""}
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper mySwiperGallery">
-            <button type="button" class="btn-close">${p.close}</button>
+            <button type="button" class="btn-close">${f.close}</button>
             <div class="swiper-wrapper">
-                ${r} 
+                ${a} 
             </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>`;
-  }, y = `/* flex */
+  };
+  var w = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+  function B(o) {
+    return o && o.__esModule && Object.prototype.hasOwnProperty.call(o, "default") ? o.default : o;
+  }
+  var x = { exports: {} }, v = { exports: {} }, S;
+  function $() {
+    return S || (S = 1, function(o) {
+      (function(t, n) {
+        o.exports ? o.exports = n() : t.EvEmitter = n();
+      })(typeof window < "u" ? window : w, function() {
+        function t() {
+        }
+        let n = t.prototype;
+        return n.on = function(i, a) {
+          if (!i || !a)
+            return this;
+          let s = this._events = this._events || {}, p = s[i] = s[i] || [];
+          return p.includes(a) || p.push(a), this;
+        }, n.once = function(i, a) {
+          if (!i || !a)
+            return this;
+          this.on(i, a);
+          let s = this._onceEvents = this._onceEvents || {}, p = s[i] = s[i] || {};
+          return p[a] = !0, this;
+        }, n.off = function(i, a) {
+          let s = this._events && this._events[i];
+          if (!s || !s.length)
+            return this;
+          let p = s.indexOf(a);
+          return p != -1 && s.splice(p, 1), this;
+        }, n.emitEvent = function(i, a) {
+          let s = this._events && this._events[i];
+          if (!s || !s.length)
+            return this;
+          s = s.slice(0), a = a || [];
+          let p = this._onceEvents && this._onceEvents[i];
+          for (let l of s)
+            p && p[l] && (this.off(i, l), delete p[l]), l.apply(this, a);
+          return this;
+        }, n.allOff = function() {
+          return delete this._events, delete this._onceEvents, this;
+        }, t;
+      });
+    }(v)), v.exports;
+  }
+  /*!
+   * imagesLoaded v5.0.0
+   * JavaScript is all like "You images are done yet or what?"
+   * MIT License
+   */
+  (function(o) {
+    (function(t, n) {
+      o.exports ? o.exports = n(t, $()) : t.imagesLoaded = n(t, t.EvEmitter);
+    })(
+      typeof window < "u" ? window : w,
+      function(n, i) {
+        let a = n.jQuery, s = n.console;
+        function p(e) {
+          return Array.isArray(e) ? e : typeof e == "object" && typeof e.length == "number" ? [...e] : [e];
+        }
+        function l(e, r, c) {
+          if (!(this instanceof l))
+            return new l(e, r, c);
+          let d = e;
+          if (typeof e == "string" && (d = document.querySelectorAll(e)), !d) {
+            s.error(`Bad element for imagesLoaded ${d || e}`);
+            return;
+          }
+          this.elements = p(d), this.options = {}, typeof r == "function" ? c = r : Object.assign(this.options, r), c && this.on("always", c), this.getImages(), a && (this.jqDeferred = new a.Deferred()), setTimeout(this.check.bind(this));
+        }
+        l.prototype = Object.create(i.prototype), l.prototype.getImages = function() {
+          this.images = [], this.elements.forEach(this.addElementImages, this);
+        };
+        const _ = [1, 9, 11];
+        l.prototype.addElementImages = function(e) {
+          e.nodeName === "IMG" && this.addImage(e), this.options.background === !0 && this.addElementBackgroundImages(e);
+          let { nodeType: r } = e;
+          if (!r || !_.includes(r))
+            return;
+          let c = e.querySelectorAll("img");
+          for (let d of c)
+            this.addImage(d);
+          if (typeof this.options.background == "string") {
+            let d = e.querySelectorAll(this.options.background);
+            for (let G of d)
+              this.addElementBackgroundImages(G);
+          }
+        };
+        const P = /url\((['"])?(.*?)\1\)/gi;
+        l.prototype.addElementBackgroundImages = function(e) {
+          let r = getComputedStyle(e);
+          if (!r)
+            return;
+          let c = P.exec(r.backgroundImage);
+          for (; c !== null; ) {
+            let d = c && c[2];
+            d && this.addBackground(d, e), c = P.exec(r.backgroundImage);
+          }
+        }, l.prototype.addImage = function(e) {
+          let r = new g(e);
+          this.images.push(r);
+        }, l.prototype.addBackground = function(e, r) {
+          let c = new u(e, r);
+          this.images.push(c);
+        }, l.prototype.check = function() {
+          if (this.progressedCount = 0, this.hasAnyBroken = !1, !this.images.length) {
+            this.complete();
+            return;
+          }
+          let e = (r, c, d) => {
+            setTimeout(() => {
+              this.progress(r, c, d);
+            });
+          };
+          this.images.forEach(function(r) {
+            r.once("progress", e), r.check();
+          });
+        }, l.prototype.progress = function(e, r, c) {
+          this.progressedCount++, this.hasAnyBroken = this.hasAnyBroken || !e.isLoaded, this.emitEvent("progress", [this, e, r]), this.jqDeferred && this.jqDeferred.notify && this.jqDeferred.notify(this, e), this.progressedCount === this.images.length && this.complete(), this.options.debug && s && s.log(`progress: ${c}`, e, r);
+        }, l.prototype.complete = function() {
+          let e = this.hasAnyBroken ? "fail" : "done";
+          if (this.isComplete = !0, this.emitEvent(e, [this]), this.emitEvent("always", [this]), this.jqDeferred) {
+            let r = this.hasAnyBroken ? "reject" : "resolve";
+            this.jqDeferred[r](this);
+          }
+        };
+        function g(e) {
+          this.img = e;
+        }
+        g.prototype = Object.create(i.prototype), g.prototype.check = function() {
+          if (this.getIsImageComplete()) {
+            this.confirm(this.img.naturalWidth !== 0, "naturalWidth");
+            return;
+          }
+          this.proxyImage = new Image(), this.img.crossOrigin && (this.proxyImage.crossOrigin = this.img.crossOrigin), this.proxyImage.addEventListener("load", this), this.proxyImage.addEventListener("error", this), this.img.addEventListener("load", this), this.img.addEventListener("error", this), this.proxyImage.src = this.img.currentSrc || this.img.src;
+        }, g.prototype.getIsImageComplete = function() {
+          return this.img.complete && this.img.naturalWidth;
+        }, g.prototype.confirm = function(e, r) {
+          this.isLoaded = e;
+          let { parentNode: c } = this.img, d = c.nodeName === "PICTURE" ? c : this.img;
+          this.emitEvent("progress", [this, d, r]);
+        }, g.prototype.handleEvent = function(e) {
+          let r = "on" + e.type;
+          this[r] && this[r](e);
+        }, g.prototype.onload = function() {
+          this.confirm(!0, "onload"), this.unbindEvents();
+        }, g.prototype.onerror = function() {
+          this.confirm(!1, "onerror"), this.unbindEvents();
+        }, g.prototype.unbindEvents = function() {
+          this.proxyImage.removeEventListener("load", this), this.proxyImage.removeEventListener("error", this), this.img.removeEventListener("load", this), this.img.removeEventListener("error", this);
+        };
+        function u(e, r) {
+          this.url = e, this.element = r, this.img = new Image();
+        }
+        return u.prototype = Object.create(g.prototype), u.prototype.check = function() {
+          this.img.addEventListener("load", this), this.img.addEventListener("error", this), this.img.src = this.url, this.getIsImageComplete() && (this.confirm(this.img.naturalWidth !== 0, "naturalWidth"), this.unbindEvents());
+        }, u.prototype.unbindEvents = function() {
+          this.img.removeEventListener("load", this), this.img.removeEventListener("error", this);
+        }, u.prototype.confirm = function(e, r) {
+          this.isLoaded = e, this.emitEvent("progress", [this, this.element, r]);
+        }, l.makeJQueryPlugin = function(e) {
+          e = e || n.jQuery, e && (a = e, a.fn.imagesLoaded = function(r, c) {
+            return new l(this, r, c).jqDeferred.promise(a(this));
+          });
+        }, l.makeJQueryPlugin(), l;
+      }
+    );
+  })(x);
+  var H = x.exports;
+  const T = /* @__PURE__ */ B(H), M = `/* flex */
 .d-flex {
   display: flex;
 }
@@ -369,7 +539,7 @@
     display: flex;
     justify-content: center;
   }
-}/*# sourceMappingURL=base.css.map */`, x = `*, *:before, *:after {
+}/*# sourceMappingURL=base.css.map */`, D = `*, *:before, *:after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -639,65 +809,66 @@ a:hover svg {
     width: 66.66%;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  m({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${y}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`);
-  const g = () => {
-    let e = setInterval(() => {
+  j({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`);
+  const k = () => {
+    let o = setInterval(() => {
       if (typeof Masonry == "function") {
-        clearInterval(e);
-        const t = a(".masonry");
-        return new Masonry(t, {
+        clearInterval(o);
+        const t = h(".masonry");
+        T(t, () => new Masonry(t, {
           itemSelector: ".item-masonry",
           columnWidth: ".width-25",
           percentPosition: !0
-        });
+        }));
       }
-    }, 200);
-  }, h = (e) => {
-    let t = window.location.pathname + "?" + e;
+    });
+  }, L = (o) => {
+    let t = window.location.pathname + "?" + o;
     history.pushState(null, "", t);
   };
-  class S {
+  class O {
     constructor() {
       this.msnry = null, this.init();
     }
     init() {
-      this.addProjectsInPortfolio(), this.clickOnProject(), this.nav(), this.msnry = g();
+      this.addProjectsInPortfolio(), this.clickOnProject(), this.nav();
     }
     addProjectsInPortfolio() {
-      a(".wrapper").insertAdjacentHTML("beforeend", f());
+      h(".wrapper").insertAdjacentHTML("beforeend", A());
     }
     clickOnProject() {
-      l(".portfolio_item a").forEach((t, n) => {
+      m(".portfolio_item a").forEach((t, n) => {
         t.addEventListener("click", (i) => {
           i.preventDefault();
-          let r = t.search.split("product=")[1].split("&")[0], o = t.search.split("variant=")[1], c = "product=" + r + "&variant=" + o;
-          h(c), new u(r, o);
+          let a = t.search.split("product=")[1].split("&")[0], s = t.search.split("variant=")[1], p = "product=" + a + "&variant=" + s;
+          L(p), new E(a, s);
         });
       });
     }
     nav() {
-      l("nav a[data-filter]").forEach((t) => {
+      m("nav a[data-filter]").forEach((t) => {
         t.addEventListener("click", (n) => {
           n.preventDefault(), document.body.classList.add("loading");
           const i = t.dataset.filter;
-          k(i, this);
+          q(i, this);
         });
       });
     }
   }
-  new S();
-  const k = (e, t) => {
-    const n = l(".portfolio_item");
-    l(".nav [data-filter]").forEach((i) => {
-      i.dataset.filter === e ? i.classList.add("active") : i.classList.remove("active");
+  const z = new O();
+  z.msnry = k();
+  const q = (o, t) => {
+    const n = m(".portfolio_item");
+    m(".nav [data-filter]").forEach((i) => {
+      i.dataset.filter === o ? i.classList.add("active") : i.classList.remove("active");
     }), n.forEach((i) => {
-      const r = i.getAttribute("data-collections").split(",").map((o) => o.trim());
-      e === "all" || r.includes(e) ? i.style.display = "block" : i.style.display = "none";
+      const a = i.getAttribute("data-collections").split(",").map((s) => s.trim());
+      o === "all" || a.includes(o) ? i.style.display = "block" : i.style.display = "none";
     }), document.body.classList.remove("loading"), t.msnry ? (t.msnry.reloadItems(), t.msnry.layout()) : setTimeout(() => {
-      t.msnry = g();
+      t.msnry = k();
     }, 300);
   };
-  class u {
+  class E {
     constructor(t, n) {
       this.namePDP = t, this.variantPDP = n, this.init();
     }
@@ -706,23 +877,23 @@ a:hover svg {
     }
     addPDP() {
       var t;
-      (t = a(".product")) == null || t.remove(), document.body.insertAdjacentHTML("afterbegin", w(this.namePDP, this.variantPDP)), setTimeout(() => {
-        a(".product").classList.add("active");
+      (t = h(".product")) == null || t.remove(), document.body.insertAdjacentHTML("afterbegin", I(this.namePDP, this.variantPDP)), setTimeout(() => {
+        h(".product").classList.add("active");
       }, 300);
     }
     clickBack() {
-      a(".product .btn-back").addEventListener("click", (t) => {
-        t.preventDefault(), a(".product").classList.remove("active"), setTimeout(() => {
+      h(".product .btn-back").addEventListener("click", (t) => {
+        t.preventDefault(), h(".product").classList.remove("active"), setTimeout(() => {
           var n;
-          (n = a(".product")) == null || n.remove();
-        }, 300), h("");
+          (n = h(".product")) == null || n.remove();
+        }, 300), L("");
       });
     }
     actionGallery() {
       var t;
-      (t = a(".btn-zoom")) == null || t.addEventListener("click", (n) => {
-        a(".mySwiperGallery").classList.add("active");
-      }), a(".btn-close").addEventListener("click", (n) => {
+      (t = h(".btn-zoom")) == null || t.addEventListener("click", (n) => {
+        h(".mySwiperGallery").classList.add("active");
+      }), h(".btn-close").addEventListener("click", (n) => {
         n.currentTarget.parentElement.classList.remove("active");
       });
     }
@@ -740,8 +911,8 @@ a:hover svg {
     }
   }
   if (window.location.href.includes("?product")) {
-    const e = window.location.href.split("product=")[1].split("&")[0], t = window.location.href.split("variant=")[1].replace("#", "");
-    new u(e, t);
+    const o = window.location.href.split("product=")[1].split("&")[0], t = window.location.href.split("variant=")[1].replace("#", "");
+    new E(o, t);
   }
 })();
 //# sourceMappingURL=index.js.map
