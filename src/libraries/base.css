@@ -1,0 +1,34 @@
+/* flex */
+.d-flex {
+  display: flex;
+}
+
+.items-center {
+  display: flex;
+  align-items: center;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.d-none {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .flex-lg-column-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .justify-lg-center {
+    display: flex;
+    justify-content: center;
+  }
+}/*# sourceMappingURL=base.css.map */
