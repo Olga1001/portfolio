@@ -47,8 +47,6 @@ class Portfolio {
     this.addProjectsInPortfolio();
     this.clickOnProject();
     this.nav();
-
-    this.msnry = initMasonry()
   }
 
   addProjectsInPortfolio() {
@@ -87,7 +85,9 @@ class Portfolio {
   }
 }
 
-new Portfolio();
+const portfolioInstance = new Portfolio();
+
+portfolioInstance.msnry = initMasonry();
 
 // Reset Masonry after filters
 const filterPortfolioItems = (category, portfolioInstance) => {
@@ -114,7 +114,7 @@ const filterPortfolioItems = (category, portfolioInstance) => {
     // portfolioInstance.msnry.destroy(); 
   } else {
     setTimeout(() => {
-      portfolioInstance.msnry = initMasonry(); // Створюємо новий Masonry
+      portfolioInstance.msnry = initMasonry();
     }, 300)
   }
 };
