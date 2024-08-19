@@ -357,9 +357,9 @@
   function M(o) {
     return o && o.__esModule && Object.prototype.hasOwnProperty.call(o, "default") ? o.default : o;
   }
-  var k = { exports: {} }, v = { exports: {} }, S;
+  var k = { exports: {} }, v = { exports: {} }, L;
   function O() {
-    return S || (S = 1, function(o) {
+    return L || (L = 1, function(o) {
       (function(e, n) {
         o.exports ? o.exports = n() : e.EvEmitter = n();
       })(typeof window < "u" ? window : w, function() {
@@ -522,7 +522,11 @@
     );
   })(k);
   var T = k.exports;
-  const L = /* @__PURE__ */ M(T), D = `/* flex */
+  const S = /* @__PURE__ */ M(T), D = `body.fixed_body {
+  overflow: hidden !important;
+}
+
+/* flex */
 .d-flex {
   display: flex;
 }
@@ -745,35 +749,6 @@ a:hover svg {
   height: 16px;
 }
 
-/* swiper */
-.mySwiperGallery {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 9999;
-  padding: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-.mySwiperGallery img {
-  -o-object-fit: contain;
-     object-fit: contain;
-  max-width: 90%;
-  margin: 0 auto;
-  display: block;
-}
-.mySwiperGallery.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-.mySwiperGallery .swiper-slide {
-  overflow-y: auto;
-}
-
 .nav {
   padding: 10px;
 }
@@ -856,14 +831,14 @@ a:hover svg {
           columnWidth: ".width-25",
           percentPosition: !0
         });
-        return L(e, () => {
+        return S(e, () => {
           n.layout();
         }), n;
       }
     });
   }, G = () => {
     const o = h(".masonry");
-    L(o, () => {
+    S(o, () => {
       u.msnry ? (u.msnry.reloadItems(), u.msnry.layout()) : u.msnry = _();
     });
   }, E = (o) => {
@@ -910,7 +885,7 @@ a:hover svg {
       this.namePDP = e, this.variantPDP = n, this.init();
     }
     init() {
-      this.addPDP(), this.clickBack();
+      this.addPDP(), this.clickBack(), document.body.classList.add("fixed_body");
     }
     addPDP() {
       var e;
@@ -923,7 +898,7 @@ a:hover svg {
         e.preventDefault(), h(".product").classList.remove("active"), setTimeout(() => {
           var n;
           (n = h(".product")) == null || n.remove();
-        }, 300), E("");
+        }, 300), document.body.classList.remove("fixed_body"), E("");
       });
     }
   }
