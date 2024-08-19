@@ -522,7 +522,8 @@
     );
   })(k);
   var T = k.exports;
-  const S = /* @__PURE__ */ M(T), D = `body.fixed_body {
+  const S = /* @__PURE__ */ M(T), D = `html.fixed_body,
+.fixed_body body {
   overflow: hidden !important;
 }
 
@@ -801,6 +802,9 @@ a:hover svg {
   .width-50 {
     width: 66.66%;
   }
+  .product {
+    background-color: #6032a4;
+  }
   .product_left, .product_right {
     width: 100%;
     padding: 14px;
@@ -808,6 +812,7 @@ a:hover svg {
   }
   .product_info {
     padding: 0;
+    min-height: 300px;
   }
   .product > .d-flex {
     flex-direction: column-reverse;
@@ -885,7 +890,7 @@ a:hover svg {
       this.namePDP = e, this.variantPDP = n, this.init();
     }
     init() {
-      this.addPDP(), this.clickBack(), document.body.classList.add("fixed_body");
+      this.addPDP(), this.clickBack(), h("html").classList.add("fixed_body");
     }
     addPDP() {
       var e;
@@ -898,7 +903,7 @@ a:hover svg {
         e.preventDefault(), h(".product").classList.remove("active"), setTimeout(() => {
           var n;
           (n = h(".product")) == null || n.remove();
-        }, 300), document.body.classList.remove("fixed_body"), E("");
+        }, 300), h("html").classList.remove("fixed_body"), E("");
       });
     }
   }
