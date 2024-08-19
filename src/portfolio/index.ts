@@ -13,6 +13,8 @@ startLog({ name: 'Portfolio', dev: 'Olha Zhuravel' })
 document.head.insertAdjacentHTML('beforeend', `<style>${basetyle}</style>`)
 document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
+const device = window.matchMedia("(max-width: 767px)").matches ? 'mobile' : 'desktop';
+
 const initMasonry = () => {
   let waitMasonry = setInterval(() => {
     if (typeof Masonry === 'function') {
@@ -130,14 +132,17 @@ class PDP {
 
   init() {
     this.addPDP()
-    this.initSwiper()
     this.clickBack()
-    this.actionGallery()
   }
 
   addPDP() {
     $el('.product')?.remove();
     document.body.insertAdjacentHTML('afterbegin', pdpHTML(this.namePDP, this.variantPDP))
+
+    if (device === 'mobile') {
+      $el('.product_info').before($el('.product .btn-back'))
+    }
+
     setTimeout(() => {
       $el('.product').classList.add('active')
     }, 300)
@@ -153,33 +158,6 @@ class PDP {
 
       pushStatePathName('')
     })
-  }
-
-  actionGallery() {
-    $el('.btn-zoom')?.addEventListener('click', (e) => {
-      $el('.mySwiperGallery').classList.add('active')
-    })
-    $el('.btn-close').addEventListener('click', (e) => {
-      e.currentTarget.parentElement.classList.remove('active')
-    })
-  }
-
-  initSwiper() {
-    let initSwiper = setInterval(function () {
-      if (typeof Swiper == 'function') {
-        clearInterval(initSwiper)
-
-        var swiper3 = new Swiper(".mySwiperGallery", {
-          loop: true,
-          slidesPerView: 1,
-
-          navigation: {
-            nextEl: ".mySwiperGallery .swiper-button-next",
-            prevEl: ".mySwiperGallery .swiper-button-prev",
-          },
-        });
-      }
-    }, 1000)
   }
 }
 
