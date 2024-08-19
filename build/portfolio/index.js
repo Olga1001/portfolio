@@ -664,8 +664,7 @@ a:hover svg {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 .product_info {
-  border-radius: 4px;
-  padding: 20px;
+  padding: 20px 0;
   line-height: 22px;
   position: sticky;
   top: 10px;
