@@ -133,7 +133,8 @@ class PDP {
   init() {
     this.addPDP()
     this.clickBack()
-    document.body.classList.add('fixed_body')
+    
+    $el('html').classList.add('fixed_body');
   }
 
   addPDP() {
@@ -156,8 +157,8 @@ class PDP {
       setTimeout(() => {
         $el('.product')?.remove()
       }, 300)
-      
-      document.body.classList.remove('fixed_body');
+
+      $el('html').classList.remove('fixed_body');
       pushStatePathName('')
     })
   }
