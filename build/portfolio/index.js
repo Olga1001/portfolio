@@ -1,11 +1,11 @@
 (function() {
   "use strict";
-  const I = ({ name: r, dev: t }) => {
+  const I = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${t})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = (r) => document.querySelectorAll(r), h = (r) => document.querySelector(r), f = "../src/portfolio/assets/", v = {
+  }, y = (o) => document.querySelectorAll(o), h = (o) => document.querySelector(o), f = "../src/portfolio/assets/", x = {
     arrowLeft: (
       /*html */
       `
@@ -265,28 +265,28 @@
       ]
     }
   }, A = () => {
-    const r = /* @__PURE__ */ new Set();
-    for (const e in b)
-      b[e].variants.forEach((o) => {
-        var l;
-        const i = (l = o.collections) == null ? void 0 : l.split(",").map((c) => c.trim());
-        i == null || i.forEach((c) => r.add(c));
+    const o = /* @__PURE__ */ new Set();
+    for (const n in b)
+      b[n].variants.forEach((r) => {
+        var c;
+        const i = (c = r.collections) == null ? void 0 : c.split(",").map((l) => l.trim());
+        i == null || i.forEach((l) => o.add(l));
       });
-    let t = '<li><a href="#" data-filter="all" class="active">All</a></li>';
-    return r.forEach((e) => {
-      t += `<li><a href="#" data-filter="${e}">${e}</a></li>`;
-    }), `<ul class="d-flex">${t}</ul>`;
+    let e = '<li><a href="#" data-filter="all" class="active">All</a></li>';
+    return o.forEach((n) => {
+      e += `<li><a href="#" data-filter="${n}">${n}</a></li>`;
+    }), `<ul class="d-flex">${e}</ul>`;
   }, B = () => {
-    let r = "";
-    for (const t in b) {
-      const e = b[t].variants;
-      for (let s = 0; s < e.length; s++) {
-        const o = e[s].images[0], i = e[s].collections;
-        r += `
-                <div class="portfolio_item item-masonry ${e[s].classes ? e[s].classes : "width-25"}" data-collections="${i}">
-                    <a href="?product=${t}&variant=${s}">
+    let o = "";
+    for (const e in b) {
+      const n = b[e].variants;
+      for (let s = 0; s < n.length; s++) {
+        const r = n[s].images[0], i = n[s].collections;
+        o += `
+                <div class="portfolio_item item-masonry ${n[s].classes ? n[s].classes : "width-25"}" data-collections="${i}">
+                    <a href="?product=${e}&variant=${s}">
                         <span>
-                            <img src="${f + "images/" + t + o}" alt="${t} image">
+                            <img src="${f + "images/" + e + r}" alt="${e} image">
                         </span>
                     </a>
                 </div>`;
@@ -298,197 +298,189 @@
                 <nav class="nav ">
                     ${A()}
                 </nav>
-                <div class="portfolio_list masonry">${r}</div>
+                <div class="portfolio_list masonry">${o}</div>
             <div>
         </div>`;
-  }, $ = (r, t) => {
-    const e = b[r].variants[t], s = e.images;
-    let o = "";
+  }, $ = (o, e) => {
+    const n = b[o].variants[e], s = n.images;
+    let r = "";
     for (let i = 0; i < s.length; i++)
-      o += `<div class="swiper-slide"><img src="${f + "images/" + r + s[i]}" alt="image"></div>`;
+      r += `<div class="swiper-slide"><img src="${f + "images/" + o + s[i]}" alt="image"></div>`;
     return `
         <div class="product">
             <div class="d-flex">
                 <div class="product_left">
-                    <a href="#" class="btn-back items-center">${v.arrowLeft} Back</a>
+                    <a href="#" class="btn-back items-center">${x.arrowLeft} Back</a>
                     <div class="product_gallery">
-                        ${o}
+                        ${r}
                     </div>
                 </div>
                 <div class="product_right">
                     <div class="product_info">
-                        <h2>${e.title}</h2>
+                        <h2>${n.title}</h2>
 
-                        ${e.link ? `<a href="${e.link}" target="_blank"><b>Preview</b></a><br><br>` : ""}
+                        ${n.link ? `<a href="${n.link}" target="_blank"><b>Preview</b></a><br><br>` : ""}
                        
-                        <p>${e.description}</p>
+                        <p>${n.description}</p>
                      
-                        ${e.gitHubCode ? `<br><br><a href="${e.gitHubCode}" class="items-center" target="_blank">${v.github} <b>Github</b></a>` : ""}
+                        ${n.gitHubCode ? `<br><br><a href="${n.gitHubCode}" class="items-center" target="_blank">${x.github} <b>Github</b></a>` : ""}
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="swiper mySwiperGallery">
-            <button type="button" class="btn-close">${v.close}</button>
-            <div class="swiper-wrapper">
-                ${o} 
-            </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
         </div>`;
-  }, H = (r, t) => {
-    const e = t === "all" ? b : {};
+  }, H = (o, e) => {
+    const n = e === "all" ? b : {};
     let s = "";
-    if (t !== "all")
-      for (const [o, i] of Object.entries(r)) {
-        const l = i.variants.filter(
-          (c) => c.collections ? t.includes(c.collections) : !1
+    if (e !== "all")
+      for (const [r, i] of Object.entries(o)) {
+        const c = i.variants.filter(
+          (l) => l.collections ? e.includes(l.collections) : !1
         );
-        l.length > 0 && (e[o] = { variants: l });
+        c.length > 0 && (n[r] = { variants: c });
       }
-    console.log(t), console.log(e);
-    for (const o in e) {
-      let i = e[o].variants;
-      for (let l = 0; l < i.length; l++)
+    console.log(e), console.log(n);
+    for (const r in n) {
+      let i = n[r].variants;
+      for (let c = 0; c < i.length; c++)
         s += `
-            <div class="portfolio_item item-masonry ${i[l].classes ? i[l].classes : "width-25"}" data-collections="${i[l].collections}">
-                <a href="?product=${o}&variant=${l}">
+            <div class="portfolio_item item-masonry ${i[c].classes ? i[c].classes : "width-25"}" data-collections="${i[c].collections}">
+                <a href="?product=${r}&variant=${c}">
                     <span>
-                        <img src="${f + "images/" + o + i[l].images[0]}" alt="${o} image">
+                        <img src="${f + "images/" + r + i[c].images[0]}" alt="${r} image">
                     </span>
                 </a>
             </div>`;
     }
     return s;
   };
-  var x = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-  function M(r) {
-    return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
+  var w = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+  function M(o) {
+    return o && o.__esModule && Object.prototype.hasOwnProperty.call(o, "default") ? o.default : o;
   }
-  var k = { exports: {} }, y = { exports: {} }, S;
-  function T() {
-    return S || (S = 1, function(r) {
-      (function(t, e) {
-        r.exports ? r.exports = e() : t.EvEmitter = e();
-      })(typeof window < "u" ? window : x, function() {
-        function t() {
+  var k = { exports: {} }, v = { exports: {} }, S;
+  function O() {
+    return S || (S = 1, function(o) {
+      (function(e, n) {
+        o.exports ? o.exports = n() : e.EvEmitter = n();
+      })(typeof window < "u" ? window : w, function() {
+        function e() {
         }
-        let e = t.prototype;
-        return e.on = function(s, o) {
-          if (!s || !o)
+        let n = e.prototype;
+        return n.on = function(s, r) {
+          if (!s || !r)
             return this;
-          let i = this._events = this._events || {}, l = i[s] = i[s] || [];
-          return l.includes(o) || l.push(o), this;
-        }, e.once = function(s, o) {
-          if (!s || !o)
+          let i = this._events = this._events || {}, c = i[s] = i[s] || [];
+          return c.includes(r) || c.push(r), this;
+        }, n.once = function(s, r) {
+          if (!s || !r)
             return this;
-          this.on(s, o);
-          let i = this._onceEvents = this._onceEvents || {}, l = i[s] = i[s] || {};
-          return l[o] = !0, this;
-        }, e.off = function(s, o) {
+          this.on(s, r);
+          let i = this._onceEvents = this._onceEvents || {}, c = i[s] = i[s] || {};
+          return c[r] = !0, this;
+        }, n.off = function(s, r) {
           let i = this._events && this._events[s];
           if (!i || !i.length)
             return this;
-          let l = i.indexOf(o);
-          return l != -1 && i.splice(l, 1), this;
-        }, e.emitEvent = function(s, o) {
+          let c = i.indexOf(r);
+          return c != -1 && i.splice(c, 1), this;
+        }, n.emitEvent = function(s, r) {
           let i = this._events && this._events[s];
           if (!i || !i.length)
             return this;
-          i = i.slice(0), o = o || [];
-          let l = this._onceEvents && this._onceEvents[s];
-          for (let c of i)
-            l && l[c] && (this.off(s, c), delete l[c]), c.apply(this, o);
+          i = i.slice(0), r = r || [];
+          let c = this._onceEvents && this._onceEvents[s];
+          for (let l of i)
+            c && c[l] && (this.off(s, l), delete c[l]), l.apply(this, r);
           return this;
-        }, e.allOff = function() {
+        }, n.allOff = function() {
           return delete this._events, delete this._onceEvents, this;
-        }, t;
+        }, e;
       });
-    }(y)), y.exports;
+    }(v)), v.exports;
   }
   /*!
    * imagesLoaded v5.0.0
    * JavaScript is all like "You images are done yet or what?"
    * MIT License
    */
-  (function(r) {
-    (function(t, e) {
-      r.exports ? r.exports = e(t, T()) : t.imagesLoaded = e(t, t.EvEmitter);
+  (function(o) {
+    (function(e, n) {
+      o.exports ? o.exports = n(e, O()) : e.imagesLoaded = n(e, e.EvEmitter);
     })(
-      typeof window < "u" ? window : x,
-      function(e, s) {
-        let o = e.jQuery, i = e.console;
-        function l(n) {
-          return Array.isArray(n) ? n : typeof n == "object" && typeof n.length == "number" ? [...n] : [n];
+      typeof window < "u" ? window : w,
+      function(n, s) {
+        let r = n.jQuery, i = n.console;
+        function c(t) {
+          return Array.isArray(t) ? t : typeof t == "object" && typeof t.length == "number" ? [...t] : [t];
         }
-        function c(n, a, p) {
-          if (!(this instanceof c))
-            return new c(n, a, p);
-          let d = n;
-          if (typeof n == "string" && (d = document.querySelectorAll(n)), !d) {
-            i.error(`Bad element for imagesLoaded ${d || n}`);
+        function l(t, a, p) {
+          if (!(this instanceof l))
+            return new l(t, a, p);
+          let d = t;
+          if (typeof t == "string" && (d = document.querySelectorAll(t)), !d) {
+            i.error(`Bad element for imagesLoaded ${d || t}`);
             return;
           }
-          this.elements = l(d), this.options = {}, typeof a == "function" ? p = a : Object.assign(this.options, a), p && this.on("always", p), this.getImages(), o && (this.jqDeferred = new o.Deferred()), setTimeout(this.check.bind(this));
+          this.elements = c(d), this.options = {}, typeof a == "function" ? p = a : Object.assign(this.options, a), p && this.on("always", p), this.getImages(), r && (this.jqDeferred = new r.Deferred()), setTimeout(this.check.bind(this));
         }
-        c.prototype = Object.create(s.prototype), c.prototype.getImages = function() {
+        l.prototype = Object.create(s.prototype), l.prototype.getImages = function() {
           this.images = [], this.elements.forEach(this.addElementImages, this);
         };
         const j = [1, 9, 11];
-        c.prototype.addElementImages = function(n) {
-          n.nodeName === "IMG" && this.addImage(n), this.options.background === !0 && this.addElementBackgroundImages(n);
-          let { nodeType: a } = n;
+        l.prototype.addElementImages = function(t) {
+          t.nodeName === "IMG" && this.addImage(t), this.options.background === !0 && this.addElementBackgroundImages(t);
+          let { nodeType: a } = t;
           if (!a || !j.includes(a))
             return;
-          let p = n.querySelectorAll("img");
+          let p = t.querySelectorAll("img");
           for (let d of p)
             this.addImage(d);
           if (typeof this.options.background == "string") {
-            let d = n.querySelectorAll(this.options.background);
-            for (let W of d)
-              this.addElementBackgroundImages(W);
+            let d = t.querySelectorAll(this.options.background);
+            for (let J of d)
+              this.addElementBackgroundImages(J);
           }
         };
         const C = /url\((['"])?(.*?)\1\)/gi;
-        c.prototype.addElementBackgroundImages = function(n) {
-          let a = getComputedStyle(n);
+        l.prototype.addElementBackgroundImages = function(t) {
+          let a = getComputedStyle(t);
           if (!a)
             return;
           let p = C.exec(a.backgroundImage);
           for (; p !== null; ) {
             let d = p && p[2];
-            d && this.addBackground(d, n), p = C.exec(a.backgroundImage);
+            d && this.addBackground(d, t), p = C.exec(a.backgroundImage);
           }
-        }, c.prototype.addImage = function(n) {
-          let a = new g(n);
+        }, l.prototype.addImage = function(t) {
+          let a = new g(t);
           this.images.push(a);
-        }, c.prototype.addBackground = function(n, a) {
-          let p = new m(n, a);
+        }, l.prototype.addBackground = function(t, a) {
+          let p = new m(t, a);
           this.images.push(p);
-        }, c.prototype.check = function() {
+        }, l.prototype.check = function() {
           if (this.progressedCount = 0, this.hasAnyBroken = !1, !this.images.length) {
             this.complete();
             return;
           }
-          let n = (a, p, d) => {
+          let t = (a, p, d) => {
             setTimeout(() => {
               this.progress(a, p, d);
             });
           };
           this.images.forEach(function(a) {
-            a.once("progress", n), a.check();
+            a.once("progress", t), a.check();
           });
-        }, c.prototype.progress = function(n, a, p) {
-          this.progressedCount++, this.hasAnyBroken = this.hasAnyBroken || !n.isLoaded, this.emitEvent("progress", [this, n, a]), this.jqDeferred && this.jqDeferred.notify && this.jqDeferred.notify(this, n), this.progressedCount === this.images.length && this.complete(), this.options.debug && i && i.log(`progress: ${p}`, n, a);
-        }, c.prototype.complete = function() {
-          let n = this.hasAnyBroken ? "fail" : "done";
-          if (this.isComplete = !0, this.emitEvent(n, [this]), this.emitEvent("always", [this]), this.jqDeferred) {
+        }, l.prototype.progress = function(t, a, p) {
+          this.progressedCount++, this.hasAnyBroken = this.hasAnyBroken || !t.isLoaded, this.emitEvent("progress", [this, t, a]), this.jqDeferred && this.jqDeferred.notify && this.jqDeferred.notify(this, t), this.progressedCount === this.images.length && this.complete(), this.options.debug && i && i.log(`progress: ${p}`, t, a);
+        }, l.prototype.complete = function() {
+          let t = this.hasAnyBroken ? "fail" : "done";
+          if (this.isComplete = !0, this.emitEvent(t, [this]), this.emitEvent("always", [this]), this.jqDeferred) {
             let a = this.hasAnyBroken ? "reject" : "resolve";
             this.jqDeferred[a](this);
           }
         };
-        function g(n) {
-          this.img = n;
+        function g(t) {
+          this.img = t;
         }
         g.prototype = Object.create(s.prototype), g.prototype.check = function() {
           if (this.getIsImageComplete()) {
@@ -498,13 +490,13 @@
           this.proxyImage = new Image(), this.img.crossOrigin && (this.proxyImage.crossOrigin = this.img.crossOrigin), this.proxyImage.addEventListener("load", this), this.proxyImage.addEventListener("error", this), this.img.addEventListener("load", this), this.img.addEventListener("error", this), this.proxyImage.src = this.img.currentSrc || this.img.src;
         }, g.prototype.getIsImageComplete = function() {
           return this.img.complete && this.img.naturalWidth;
-        }, g.prototype.confirm = function(n, a) {
-          this.isLoaded = n;
+        }, g.prototype.confirm = function(t, a) {
+          this.isLoaded = t;
           let { parentNode: p } = this.img, d = p.nodeName === "PICTURE" ? p : this.img;
           this.emitEvent("progress", [this, d, a]);
-        }, g.prototype.handleEvent = function(n) {
-          let a = "on" + n.type;
-          this[a] && this[a](n);
+        }, g.prototype.handleEvent = function(t) {
+          let a = "on" + t.type;
+          this[a] && this[a](t);
         }, g.prototype.onload = function() {
           this.confirm(!0, "onload"), this.unbindEvents();
         }, g.prototype.onerror = function() {
@@ -512,25 +504,25 @@
         }, g.prototype.unbindEvents = function() {
           this.proxyImage.removeEventListener("load", this), this.proxyImage.removeEventListener("error", this), this.img.removeEventListener("load", this), this.img.removeEventListener("error", this);
         };
-        function m(n, a) {
-          this.url = n, this.element = a, this.img = new Image();
+        function m(t, a) {
+          this.url = t, this.element = a, this.img = new Image();
         }
         return m.prototype = Object.create(g.prototype), m.prototype.check = function() {
           this.img.addEventListener("load", this), this.img.addEventListener("error", this), this.img.src = this.url, this.getIsImageComplete() && (this.confirm(this.img.naturalWidth !== 0, "naturalWidth"), this.unbindEvents());
         }, m.prototype.unbindEvents = function() {
           this.img.removeEventListener("load", this), this.img.removeEventListener("error", this);
-        }, m.prototype.confirm = function(n, a) {
-          this.isLoaded = n, this.emitEvent("progress", [this, this.element, a]);
-        }, c.makeJQueryPlugin = function(n) {
-          n = n || e.jQuery, n && (o = n, o.fn.imagesLoaded = function(a, p) {
-            return new c(this, a, p).jqDeferred.promise(o(this));
+        }, m.prototype.confirm = function(t, a) {
+          this.isLoaded = t, this.emitEvent("progress", [this, this.element, a]);
+        }, l.makeJQueryPlugin = function(t) {
+          t = t || n.jQuery, t && (r = t, r.fn.imagesLoaded = function(a, p) {
+            return new l(this, a, p).jqDeferred.promise(r(this));
           });
-        }, c.makeJQueryPlugin(), c;
+        }, l.makeJQueryPlugin(), l;
       }
     );
   })(k);
-  var O = k.exports;
-  const L = /* @__PURE__ */ M(O), D = `/* flex */
+  var T = k.exports;
+  const L = /* @__PURE__ */ M(T), D = `/* flex */
 .d-flex {
   display: flex;
 }
@@ -562,6 +554,11 @@
   .justify-lg-center {
     display: flex;
     justify-content: center;
+  }
+}
+@media (min-width: 768px) {
+  .d-md-flex {
+    display: flex;
   }
 }/*# sourceMappingURL=base.css.map */`, z = `*, *:before, *:after {
   box-sizing: border-box;
@@ -694,7 +691,7 @@ a:hover svg {
   padding: 20px 0;
   line-height: 22px;
   position: sticky;
-  top: 10px;
+  top: 40px;
   height: -moz-fit-content;
   height: fit-content;
   font-size: 14px;
@@ -807,9 +804,17 @@ a:hover svg {
   min-height: 100vh;
 }
 
+@media screen and (min-width: 768px) {
+  .mySwiper .swiper-wrapper {
+    display: block !important;
+  }
+}
 @media screen and (max-width: 767px) {
   .container {
     padding: 0 10px;
+  }
+  h2 {
+    font-size: 18px;
   }
   .nav,
   .item-masonry {
@@ -821,32 +826,51 @@ a:hover svg {
   .width-50 {
     width: 66.66%;
   }
+  .product_left, .product_right {
+    width: 100%;
+    padding: 14px;
+    min-height: auto;
+  }
+  .product_info {
+    padding: 0;
+  }
+  .product > .d-flex {
+    flex-direction: column-reverse;
+  }
+  .btn-back {
+    color: #1e1e1e;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  .btn-back svg {
+    fill: #1e1e1e;
+  }
 }/*# sourceMappingURL=main.css.map */`;
   I({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
-  const E = () => {
-    let r = setInterval(() => {
+  const q = window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop", _ = () => {
+    let o = setInterval(() => {
       if (typeof Masonry == "function") {
-        clearInterval(r);
-        const t = h(".masonry"), e = new Masonry(t, {
+        clearInterval(o);
+        const e = h(".masonry"), n = new Masonry(e, {
           itemSelector: ".item-masonry",
           columnWidth: ".width-25",
           percentPosition: !0
         });
-        return L(t, () => {
-          e.layout();
-        }), e;
+        return L(e, () => {
+          n.layout();
+        }), n;
       }
     });
-  }, q = () => {
-    const r = h(".masonry");
-    L(r, () => {
-      u.msnry ? (u.msnry.reloadItems(), u.msnry.layout()) : u.msnry = E();
+  }, G = () => {
+    const o = h(".masonry");
+    L(o, () => {
+      u.msnry ? (u.msnry.reloadItems(), u.msnry.layout()) : u.msnry = _();
     });
-  }, P = (r) => {
-    let t = window.location.pathname + "?" + r;
-    history.pushState(null, "", t);
+  }, E = (o) => {
+    let e = window.location.pathname + "?" + o;
+    history.pushState(null, "", e);
   };
-  class G {
+  class W {
     constructor() {
       this.msnry = null, this.init();
     }
@@ -857,75 +881,55 @@ a:hover svg {
       h(".wrapper").insertAdjacentHTML("beforeend", B());
     }
     clickOnProject() {
-      w(".portfolio_item a").forEach((t, e) => {
-        t.addEventListener("click", (s) => {
+      y(".portfolio_item a").forEach((e, n) => {
+        e.addEventListener("click", (s) => {
           s.preventDefault(), s.stopPropagation();
-          let o = t.search.split("product=")[1].split("&")[0], i = t.search.split("variant=")[1], l = "product=" + o + "&variant=" + i;
-          P(l), new _(o, i);
+          let r = e.search.split("product=")[1].split("&")[0], i = e.search.split("variant=")[1], c = "product=" + r + "&variant=" + i;
+          E(c), new P(r, i);
         });
       });
     }
     nav() {
-      w("nav a[data-filter]").forEach((t) => {
-        t.addEventListener("click", (e) => {
-          if (e.preventDefault(), t.classList.contains("active"))
+      y("nav a[data-filter]").forEach((e) => {
+        e.addEventListener("click", (n) => {
+          if (n.preventDefault(), e.classList.contains("active"))
             return;
-          h("nav a.active").classList.remove("active"), t.classList.add("active");
-          const s = t.dataset.filter, o = H(b, s);
-          h(".portfolio_list").innerHTML = o, q(), this.clickOnProject();
+          h("nav a.active").classList.remove("active"), e.classList.add("active");
+          const s = e.dataset.filter, r = H(b, s);
+          h(".portfolio_list").innerHTML = r, G(), this.clickOnProject();
         });
       });
     }
   }
-  const u = new G();
-  u.msnry = E(), setTimeout(() => {
+  const u = new W();
+  u.msnry = _(), setTimeout(() => {
     document.body.classList.add("init");
   }, 300);
-  class _ {
-    constructor(t, e) {
-      this.namePDP = t, this.variantPDP = e, this.init();
+  class P {
+    constructor(e, n) {
+      this.namePDP = e, this.variantPDP = n, this.init();
     }
     init() {
-      this.addPDP(), this.initSwiper(), this.clickBack(), this.actionGallery();
+      this.addPDP(), this.clickBack();
     }
     addPDP() {
-      var t;
-      (t = h(".product")) == null || t.remove(), document.body.insertAdjacentHTML("afterbegin", $(this.namePDP, this.variantPDP)), setTimeout(() => {
+      var e;
+      (e = h(".product")) == null || e.remove(), document.body.insertAdjacentHTML("afterbegin", $(this.namePDP, this.variantPDP)), q === "mobile" && h(".product_info").before(h(".product .btn-back")), setTimeout(() => {
         h(".product").classList.add("active");
       }, 300);
     }
     clickBack() {
-      h(".product .btn-back").addEventListener("click", (t) => {
-        t.preventDefault(), h(".product").classList.remove("active"), setTimeout(() => {
-          var e;
-          (e = h(".product")) == null || e.remove();
-        }, 300), P("");
+      h(".product .btn-back").addEventListener("click", (e) => {
+        e.preventDefault(), h(".product").classList.remove("active"), setTimeout(() => {
+          var n;
+          (n = h(".product")) == null || n.remove();
+        }, 300), E("");
       });
-    }
-    actionGallery() {
-      var t;
-      (t = h(".btn-zoom")) == null || t.addEventListener("click", (e) => {
-        h(".mySwiperGallery").classList.add("active");
-      }), h(".btn-close").addEventListener("click", (e) => {
-        e.currentTarget.parentElement.classList.remove("active");
-      });
-    }
-    initSwiper() {
-      let t = setInterval(function() {
-        typeof Swiper == "function" && (clearInterval(t), new Swiper(".mySwiperGallery", {
-          loop: !0,
-          slidesPerView: 1,
-          navigation: {
-            nextEl: ".mySwiperGallery .swiper-button-next",
-            prevEl: ".mySwiperGallery .swiper-button-prev"
-          }
-        }));
-      }, 1e3);
     }
   }
   if (window.location.href.includes("?product")) {
-    const r = window.location.href.split("product=")[1].split("&")[0], t = window.location.href.split("variant=")[1].replace("#", "");
-    new _(r, t);
+    const o = window.location.href.split("product=")[1].split("&")[0], e = window.location.href.split("variant=")[1].replace("#", "");
+    new P(o, e);
   }
 })();
 //# sourceMappingURL=index.js.map
