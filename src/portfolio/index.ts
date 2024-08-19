@@ -1,5 +1,6 @@
 import { startLog, $$el, $el } from '../libraries'
-import { addPortfolioSection, pdpHTML } from './blocks'
+import { dataItemsPortfolio } from './data'
+import { addPortfolioSection, pdpHTML, filterPortfolioItems } from './blocks'
 import imagesLoaded from 'imagesloaded';
 
 // @ts-ignore
@@ -16,19 +17,36 @@ const initMasonry = () => {
   let waitMasonry = setInterval(() => {
     if (typeof Masonry === 'function') {
       clearInterval(waitMasonry)
-      
+
       const container = $el('.masonry');
 
-      imagesLoaded(container, () => {
-        return new Masonry(container, {
-          itemSelector: '.item-masonry',
-          columnWidth: '.width-25',
-          percentPosition: true,
-        });
+      const msnry = new Masonry(container, {
+        itemSelector: '.item-masonry',
+        columnWidth: '.width-25',
+        percentPosition: true,
       });
+
+      imagesLoaded(container, () => {
+        msnry.layout();
+      });
+
+      return msnry;
     }
   })
 }
+
+const refreshMasonry = () => {
+  const container = $el('.masonry');
+
+  imagesLoaded(container, () => {
+    if (portfolioInstance.msnry) {
+      portfolioInstance.msnry.reloadItems();
+      portfolioInstance.msnry.layout();
+    } else {
+      portfolioInstance.msnry = initMasonry();
+    }
+  });
+};
 
 const pushStatePathName = (newSearch) => {
   let newUrl = window.location.pathname + '?' + newSearch;
@@ -57,10 +75,11 @@ class Portfolio {
     $$el('.portfolio_item a').forEach((item, index) => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         let namePDP = item.search.split('product=')[1].split('&')[0];
         let variantPDP = item.search.split('variant=')[1];
-     
+
         let newSearch = 'product=' + namePDP + '&variant=' + variantPDP;
 
         pushStatePathName(newSearch);
@@ -73,51 +92,31 @@ class Portfolio {
   nav() {
     $$el('nav a[data-filter]').forEach(item => {
       item.addEventListener('click', (e) => {
-          e.preventDefault();
-          document.body.classList.add('loading');
-        
-          const category = item.dataset.filter;
+        e.preventDefault();
 
-          filterPortfolioItems(category, this);
+        if (item.classList.contains('active')) return
 
+        $el('nav a.active').classList.remove('active');
+        item.classList.add('active');
+
+        const category = item.dataset.filter;
+        const filteredData = filterPortfolioItems(dataItemsPortfolio, category);
+
+        $el('.portfolio_list').innerHTML = filteredData;
+
+        refreshMasonry();
+        this.clickOnProject();
       });
     });
   }
 }
 
 const portfolioInstance = new Portfolio();
-
 portfolioInstance.msnry = initMasonry();
 
-// Reset Masonry after filters
-const filterPortfolioItems = (category, portfolioInstance) => {
-  const items = $$el('.portfolio_item');
-
-  $$el('.nav [data-filter]').forEach(item => {
-    item.dataset.filter === category ? item.classList.add('active') : item.classList.remove('active')
-  })
-
-  items.forEach(item => {
-    const itemCollections = item.getAttribute('data-collections').split(',').map(c => c.trim());
-    if (category === 'all' || itemCollections.includes(category)) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-
-  document.body.classList.remove('loading');
-
-  if (portfolioInstance.msnry) {
-    portfolioInstance.msnry.reloadItems()
-    portfolioInstance.msnry.layout(); 
-    // portfolioInstance.msnry.destroy(); 
-  } else {
-    setTimeout(() => {
-      portfolioInstance.msnry = initMasonry();
-    }, 300)
-  }
-};
+setTimeout(() => {
+  document.body.classList.add('init')
+}, 300)
 
 class PDP {
   namePDP: string
@@ -151,7 +150,7 @@ class PDP {
       setTimeout(() => {
         $el('.product')?.remove()
       }, 300)
-   
+
       pushStatePathName('')
     })
   }
@@ -170,35 +169,14 @@ class PDP {
       if (typeof Swiper == 'function') {
         clearInterval(initSwiper)
 
-        // var swiper2 = new Swiper(".mySwiper2", {
-        //   loop: true,
-        //   spaceBetween: 10,
-        //   slidesPerView: "auto",
-        //   freeMode: true,
-        //   watchSlidesProgress: true,
-        //   navigation: {
-        //     nextEl: ".mySwiper2 .swiper-button-next",
-        //     prevEl: ".mySwiper2 .swiper-button-prev",
-        //   },  
-        // });
-
-        // var swiper = new Swiper(".mySwiper", {
-        //   loop: true,
-        //   slidesPerView: 1,
-        //   // slideToClickedSlide: true,
-        //   thumbs: {
-        //     swiper: swiper2,
-        //   },
-        // });
-        
         var swiper3 = new Swiper(".mySwiperGallery", {
           loop: true,
           slidesPerView: 1,
-        
+
           navigation: {
             nextEl: ".mySwiperGallery .swiper-button-next",
             prevEl: ".mySwiperGallery .swiper-button-prev",
-          }, 
+          },
         });
       }
     }, 1000)
@@ -207,7 +185,7 @@ class PDP {
 
 if (window.location.href.includes('?product')) {
   const namePDP = window.location.href.split('product=')[1].split('&')[0]
-  const variantPDP = window.location.href.split('variant=')[1].replace('#','')
+  const variantPDP = window.location.href.split('variant=')[1].replace('#', '')
 
   new PDP(namePDP, variantPDP);
 }
