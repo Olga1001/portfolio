@@ -1,5 +1,6 @@
 import { startLog, $$el, $el } from '../libraries'
 import { addPortfolioSection, pdpHTML } from './blocks'
+import imagesLoaded from 'imagesloaded';
 
 // @ts-ignore
 import basetyle from '../libraries/base.css?raw'
@@ -18,13 +19,15 @@ const initMasonry = () => {
       
       const container = $el('.masonry');
 
+      imagesLoaded(container, () => {
         return new Masonry(container, {
           itemSelector: '.item-masonry',
           columnWidth: '.width-25',
           percentPosition: true,
         });
+      });
     }
-  }, 200)
+  })
 }
 
 const pushStatePathName = (newSearch) => {
