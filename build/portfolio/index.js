@@ -539,7 +539,7 @@
     display: flex;
     justify-content: center;
   }
-}/*# sourceMappingURL=base.css.map */`, D = `*, *:before, *:after {
+}/*# sourceMappingURL=base.css.map */`, z = `*, *:before, *:after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -600,6 +600,7 @@ a:hover svg {
 }
 .item-masonry span {
   background-color: #f5f5f5;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   border-radius: 4px;
   padding: 4px;
   display: block;
@@ -642,6 +643,8 @@ a:hover svg {
 .product_left {
   background-color: #6032a4;
   transform: translateX(-100%);
+  box-shadow: 5px 5px 10px rgba(96, 50, 164, 0.4);
+  z-index: 2;
 }
 .product_right {
   background-color: rgb(243, 243, 243);
@@ -658,7 +661,7 @@ a:hover svg {
   -o-object-position: top;
      object-position: top;
   margin-bottom: 7px;
-  box-shadow: 0 -180px 600px rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 .product_info {
   border-radius: 4px;
@@ -809,7 +812,7 @@ a:hover svg {
     width: 66.66%;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  j({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`);
+  j({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
   const k = () => {
     let o = setInterval(() => {
       if (typeof Masonry == "function") {
@@ -826,7 +829,7 @@ a:hover svg {
     let t = window.location.pathname + "?" + o;
     history.pushState(null, "", t);
   };
-  class O {
+  class D {
     constructor() {
       this.msnry = null, this.init();
     }
@@ -855,8 +858,8 @@ a:hover svg {
       });
     }
   }
-  const z = new O();
-  z.msnry = k();
+  const O = new D();
+  O.msnry = k();
   const q = (o, t) => {
     const n = m(".portfolio_item");
     m(".nav [data-filter]").forEach((i) => {
