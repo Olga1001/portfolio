@@ -148,6 +148,14 @@ class PDP {
     setTimeout(() => {
       $el('.product').classList.add('active')
     }, 300)
+
+  
+    const appHeight = () => {
+      $el('.product').style.height = window.innerHeight + "px";
+    };
+    
+    window.addEventListener("resize", appHeight);
+    appHeight();
   }
 
   clickBack() {
