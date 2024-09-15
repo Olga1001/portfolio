@@ -1,4 +1,4 @@
-import { svg, dir, dataItemsPortfolio } from './data'
+import { svg, dir, dataItemsPortfolio, Portfolio } from './data'
 
 const createNavMenu = () => {
     const categories = new Set();
@@ -44,7 +44,12 @@ export const addPortfolioSection = () => {
     return `
         <div class="portfolio">
             <div class="container">
-                <nav class="nav ">
+                <div class="text-center">
+                    <h3 class="c-orange">Welcome to</h3>
+                    <h1>ZHURAVEL OLHA</h1>
+                    <h3>Completed projects</h3>
+                </div>
+                <nav class="nav">
                     ${createNavMenu()}
                 </nav>
                 <div class="portfolio_list masonry">${items}</div>
@@ -83,14 +88,42 @@ export const pdpHTML = (product, variant) => {
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="swiper mySwiperGallery">
-            <button type="button" class="btn-close">${svg.close}</button>
-            <div class="swiper-wrapper">
-                ${slider} 
-            </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>`
-        
+        </div>`  
 }
+
+
+export const filterPortfolioItems = (portfolio: Portfolio, options: string): string => {
+    const filteredPortfolio: Portfolio = options === 'all' ? dataItemsPortfolio : {};
+    let items: string = '';
+    
+    if (options !== 'all') {
+        for (const [key, value] of Object.entries(portfolio)) {
+        const filteredVariants = value.variants.filter(item =>
+            item.collections ? options.includes(item.collections) : false
+        );
+    
+        if (filteredVariants.length > 0) {
+            filteredPortfolio[key] = { variants: filteredVariants };
+        }
+        }
+    }
+    console.log(options)
+    console.log(filteredPortfolio)
+
+    for (const key in filteredPortfolio) {
+        let variants = filteredPortfolio[key]['variants'];
+
+       for (let i = 0; i < variants.length; i++) {
+        items += `
+            <div class="portfolio_item item-masonry ${ variants[i].classes ? variants[i].classes : 'width-25'}" data-collections="${variants[i].collections}">
+                <a href="?product=${key}&variant=${i}">
+                    <span>
+                        <img src="${dir + 'images/' + key + variants[i].images[0]}" alt="${key} image">
+                    </span>
+                </a>
+            </div>`;
+       }
+    }
+
+    return items;
+};
