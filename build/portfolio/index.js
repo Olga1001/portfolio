@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const I = ({ name: o, dev: n }) => {
+  const A = ({ name: o, dev: n }) => {
     console.log(
       `%c EXP: ${o} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -264,7 +264,7 @@
         }
       ]
     }
-  }, A = () => {
+  }, I = () => {
     const o = /* @__PURE__ */ new Set();
     for (const t in b)
       b[t].variants.forEach((r) => {
@@ -295,8 +295,13 @@
     return `
         <div class="portfolio">
             <div class="container">
-                <nav class="nav ">
-                    ${A()}
+                <div class="text-center">
+                    <h3 class="c-orange">Welcome to</h3>
+                    <h1>ZHURAVEL OLHA</h1>
+                    <h3>Completed projects</h3>
+                </div>
+                <nav class="nav">
+                    ${I()}
                 </nav>
                 <div class="portfolio_list masonry">${o}</div>
             <div>
@@ -522,7 +527,7 @@
     );
   })(k);
   var T = k.exports;
-  const S = /* @__PURE__ */ M(T), D = `html.fixed_body,
+  const _ = /* @__PURE__ */ M(T), D = `html.fixed_body,
 .fixed_body body {
   overflow: hidden !important;
 }
@@ -549,6 +554,10 @@
 
 .d-none {
   display: none;
+}
+
+.text-center {
+  text-align: center;
 }
 
 @media (min-width: 900px) {
@@ -600,6 +609,11 @@ body.init:before {
 img {
   width: 100%;
   height: 100%;
+}
+
+h1, h3 {
+  color: #fff;
+  margin: 8px 0;
 }
 
 h2 {
@@ -780,9 +794,18 @@ a:hover svg {
   min-height: 100vh;
 }
 
+.c-orange {
+  color: orange;
+}
+
 @media screen and (min-width: 768px) {
   .mySwiper .swiper-wrapper {
     display: block !important;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .nav_social {
+    right: 20px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -826,8 +849,8 @@ a:hover svg {
     fill: #1e1e1e;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  I({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
-  const q = window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop", _ = () => {
+  A({ name: "Portfolio", dev: "Olha Zhuravel" }), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
+  const q = window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop", S = () => {
     let o = setInterval(() => {
       if (typeof Masonry == "function") {
         clearInterval(o);
@@ -836,21 +859,21 @@ a:hover svg {
           columnWidth: ".width-25",
           percentPosition: !0
         });
-        return S(n, () => {
+        return _(n, () => {
           t.layout();
         }), t;
       }
     });
-  }, G = () => {
+  }, W = () => {
     const o = h(".masonry");
-    S(o, () => {
-      u.msnry ? (u.msnry.reloadItems(), u.msnry.layout()) : u.msnry = _();
+    _(o, () => {
+      u.msnry ? (u.msnry.reloadItems(), u.msnry.layout()) : u.msnry = S();
     });
   }, E = (o) => {
     let n = window.location.pathname + "?" + o;
     history.pushState(null, "", n);
   };
-  class W {
+  class G {
     constructor() {
       this.msnry = null, this.init();
     }
@@ -876,13 +899,13 @@ a:hover svg {
             return;
           h("nav a.active").classList.remove("active"), n.classList.add("active");
           const s = n.dataset.filter, r = H(b, s);
-          h(".portfolio_list").innerHTML = r, G(), this.clickOnProject();
+          h(".portfolio_list").innerHTML = r, W(), this.clickOnProject();
         });
       });
     }
   }
-  const u = new W();
-  u.msnry = _(), setTimeout(() => {
+  const u = new G();
+  u.msnry = S(), setTimeout(() => {
     document.body.classList.add("init");
   }, 300);
   class P {
