@@ -35,6 +35,11 @@ img {
   height: 100%;
 }
 
+h1, h3 {
+  color: #fff;
+  margin: 8px 0;
+}
+
 h2 {
   padding: 20px 0;
   font-size: 34px;
@@ -260,6 +265,10 @@ a {
   padding: 20px 0;
   background-color: #6032a4;
   min-height: 100vh;
+}
+
+.c-orange {
+  color: orange;
 }
 
 @media screen and (max-width: 767px) {
